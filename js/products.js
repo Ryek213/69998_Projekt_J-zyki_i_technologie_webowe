@@ -14,7 +14,18 @@ const products = {
 let allProducts
 async function getData() {
         try {
-                const response = await fetch(products.url, products.options);
+                const response = await fetch(`${supabase.url}/rest/v1/products`, {
+                        headers: {
+                                "apikey": supabase.key,
+                                "Authorization": `Bearer ${supabase.key}`
+                        }
+                });
+
+                if (!response.ok) {
+                        const text = await response.text();
+                        throw new Error(text);
+                }
+
                 allProducts = await response.json();
         } catch (error) {
                 console.error(error);
@@ -87,7 +98,7 @@ async function renderProducts() {
                 )
                 content.appendChild(
                         Object.assign(document.createElement('p'), {
-                                textContent: `$${product.price}`
+                                textContent: `${product.price} zł`
                         })
                 )
                 const add_button = content.appendChild(

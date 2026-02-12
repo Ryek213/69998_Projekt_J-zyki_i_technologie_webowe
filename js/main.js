@@ -1,6 +1,9 @@
-const cartName = "cart"
+const supabase = {
+        url: 'https://qrgrnvmhkwsyonhadyva.supabase.co',
+        key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFyZ3Judm1oa3dzeW9uaGFkeXZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NTQ1OTAsImV4cCI6MjA4NjQzMDU5MH0.Ulbh8gYv_z6VPB6sgN4bYVjEfhbMHGo-ZFSfpNly_38'
+}
 
-localStorage.setItem(cartName, undefined);
+const cartName = 'cart';
 
 function getCart() {
         const cart = localStorage.getItem(cartName);
