@@ -27,10 +27,6 @@
         font-weight: bold;
 }
 
-#login-form button:hover {
-        background-color: rgb(80, 80, 80);
-}
-
 .change-section {
         margin: 10px 0;
         padding: 20px 20px;
@@ -64,8 +60,4 @@
         --background-color: crimson;
         background-color: var(--background-color);
         color: whitesmoke;
-}
-
-#logout-button:hover {
-        background-color: hsl(from var(--background-color) h s calc(l * 0.8));
 }

@@ -3,6 +3,12 @@
         padding: var(--default-input-padding);
         border: var(--default-input-border);
         border-radius: var(--max-border-radius);
+
+        transition: filter 0.25s ease;
+}
+
+#search:hover {
+        filter: brightness(90%);
 }
 
 #categories {
@@ -10,6 +16,12 @@
         border: var(--default-input-border);
         border-radius: var(--max-border-radius);
         text-transform: uppercase;
+
+        transition: filter 0.25s ease;
+}
+
+#categories:hover {
+        filter: brightness(90%);
 }
 
 #products-container {
@@ -38,6 +50,12 @@
         margin: 0 0;
         background-color: rgb(112, 217, 224);
         border-radius: 8px 0 0 8px;
+
+        transition: filter 0.25s ease;
+}
+
+.product-card #img-wrapper:hover {
+        filter: brightness(90%)
 }
 
 .product-card img {
