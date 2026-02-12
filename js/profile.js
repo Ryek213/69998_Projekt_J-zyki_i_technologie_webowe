@@ -114,7 +114,8 @@ changePasswordForm.addEventListener('submit', async (e) => {
                                 method: 'PATCH',
                                 headers: {
                                         'apikey': supabase.key,
-                                        'Authorization': `Bearer ${supabase.key}`
+                                        'Authorization': `Bearer ${supabase.key}`,
+                                        'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify(updateData)
                         }
