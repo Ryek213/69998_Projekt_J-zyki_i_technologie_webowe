@@ -2,16 +2,15 @@ const container = document.getElementById('products-container');
 const searchBar = document.getElementById('search');
 const categoriesFilter = document.getElementById("categories");
 
-const allCategory = "all"
+const allCategory = "Wszystkie";
 
-const products = {
-        url: 'https://fakestoreapi.com/products',
-        options: {
-                method: 'GET'
-        }
+const filters = {
+        search: "",
+        category: allCategory
 }
 
-let allProducts
+let allProducts;
+
 async function getData() {
         try {
                 const response = await fetch(`${supabase.url}/rest/v1/products`, {
@@ -53,17 +52,14 @@ async function fillCategories() {
         }
 }
 
-const filters = {
-        search: "",
-        category: allCategory
-}
+
 
 async function renderProducts() {
         const filtered = allProducts.filter((p) => {
                 const matchSearch = p.title.toLowerCase().includes(filters.search);
 
                 const matchFilter = 
-                        filters.category === 'all' ||
+                        filters.category === allCategory ||
                         p.category === filters.category
 
                 return matchSearch && matchFilter
@@ -106,6 +102,8 @@ async function renderProducts() {
                                 textContent: 'Dodaj do koszyka'
                         })
                 )
+
+                add_button.classList.add('default-button');
 
                 add_button.addEventListener('click', () => {
                         addToCartById(product.id);

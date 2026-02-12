@@ -4,6 +4,9 @@ const supabase = {
 }
 
 const cartName = 'cart';
+const currentUserName = 'currentUser';
+
+let currentUser = null;
 
 function getCart() {
         const cart = localStorage.getItem(cartName);
@@ -43,3 +46,18 @@ function updateQuantity(product_id, quantity) {
                 saveCart(cart)
         }
 }
+
+function getSavedUser() {
+        const user = localStorage.getItem(currentUserName);
+        return user && user !== 'undefined' ? JSON.parse(user) : null;
+}
+
+function setSavedUser(user) {
+        localStorage.setItem(currentUserName, JSON.stringify(user));
+}
+
+function init() {
+        currentUser = getSavedUser();
+}
+
+init()

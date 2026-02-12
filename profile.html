@@ -19,6 +19,39 @@
                 </header>
 
                 <article>
+                        <section id="login-section">
+                                <h2>Logowanie</h2>
+                                <form id="login-form">
+                                        <input type="text" id="username-login" placeholder="Nazwa użytkownika" required>
+                                        <input type="password" id="password-login" placeholder="Hasło" required>
+                                        <button class="default-button" type="submit">Zaloguj</button>
+                                </form>
+                                <p id="login-msg"></p>
+                        </section>
+
+                        <section id="profile-section">
+                                <h2>Profil użytkownika</h2>
+                                <section id="change-username-section" class="change-section">
+                                        <h3>Zaktualizuj nazwę użytkownika</h3>
+                                        <form id="change-username-form">
+                                                <label for="username">Nazwa użytkownika:</label>
+                                                <input type="text" id="username" required>
+                                                <button class="default-button" type="submit">Zaktualizuj</button>
+                                        </form>
+                                </section>
+                                
+                                <section id="change-password-section" class="change-section">
+                                        <h3>Zaktualizuj hasło</h3>
+                                        <form id="change-password-form">
+                                                <label for="username">Hasło:</label>
+                                                <input type="text" id="username" required>
+                                                <button class="default-button" type="submit">Zaktualizuj</button>
+                                        </form>
+                                </section>
+
+                                <button id="logout-button" class="default-button">Wyloguj</button>
+                                <p id="profile-msg"></p>
+                        </section>
                 </article>
 
                 <footer>

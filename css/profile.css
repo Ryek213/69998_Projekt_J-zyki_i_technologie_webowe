@@ -1,0 +1,71 @@
+#profile-section {
+        display: none;
+}
+
+#login-section h2 {
+        text-align: center;
+}
+
+#login-form {
+        display: flex;
+        flex-direction: column;
+}
+
+#login-form > * {
+        margin: 5px auto;
+}
+
+#login-form input {
+        padding: var(--default-input-padding);
+        border: var(--default-input-border);
+        border-radius: var(--max-border-radius);
+}
+
+#login-form button {
+        background-color: rgb(107, 107, 107);
+        color: whitesmoke;
+        font-weight: bold;
+}
+
+#login-form button:hover {
+        background-color: rgb(80, 80, 80);
+}
+
+.change-section {
+        margin: 10px 0;
+        padding: 20px 20px;
+        border-radius: 12px;
+        background-color: hsl(from var(--base-color) h s calc(l * 0.95));
+}
+
+.change-section h3 {
+        margin: 0;
+}
+
+.change-section form {
+        display: flex;
+        flex-direction: column;
+}
+
+.change-section form > * {
+        margin: 5px 0;
+}
+
+.change-section form input {
+        width: 90%;
+        min-width: 160px;
+        max-width: 180px;
+        padding: var(--default-input-padding);
+        border: var(--default-input-border);
+        border-radius: var(--max-border-radius);
+}
+
+#logout-button {
+        --background-color: crimson;
+        background-color: var(--background-color);
+        color: whitesmoke;
+}
+
+#logout-button:hover {
+        background-color: hsl(from var(--background-color) h s calc(l * 0.8));
+}
