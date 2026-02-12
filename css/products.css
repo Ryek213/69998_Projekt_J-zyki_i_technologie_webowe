@@ -48,7 +48,7 @@
         height: auto;
         padding: 10px;
         margin: 0 0;
-        background-color: rgb(112, 217, 224);
+        background-color: var(--base-color);
         border-radius: 8px 0 0 8px;
 
         transition: filter 0.25s ease;
@@ -68,6 +68,6 @@
 .product-card #content {
         width: 100%;
         padding: 10px 20px;
-        background-color: rgb(240, 193, 123);
+        background-color: var(--base-color);
         border-radius: 0 8px 8px 0;
 }

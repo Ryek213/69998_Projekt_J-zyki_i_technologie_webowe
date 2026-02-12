@@ -70,7 +70,6 @@ async function renderProducts() {
                 const card = document.createElement("div");
                 card.classList.add("product-card");
 
-                // console.log(product.image, product.title, product.price)
                 const img_wrapper = card.appendChild(
                         Object.assign(document.createElement('div'), {
                                 id: 'img-wrapper'
@@ -106,7 +105,9 @@ async function renderProducts() {
                 add_button.classList.add('default-button');
 
                 add_button.addEventListener('click', () => {
-                        addToCartById(product.id);
+                        if (!currentUser) return
+                        addToCart(currentUser.id, product.id);
+                        alert(`Dodano ${product.title} do koszyka`)
                 });
 
                 container.appendChild(card);

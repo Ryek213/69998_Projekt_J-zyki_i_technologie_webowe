@@ -8,43 +8,88 @@ const currentUserName = 'currentUser';
 
 let currentUser = null;
 
-function getCart() {
-        const cart = localStorage.getItem(cartName);
-        return cart && cart !== 'undefined' ? JSON.parse(cart) : [];
+async function getCart(userId) {
+        console.log(userId)
+        const response = await fetch(
+                `${supabase.url}/rest/v1/user_product?user_id=eq.${userId}&select=*,products(*)`, 
+                {
+                        headers: {
+                                "apikey": supabase.key,
+                                "Authorization": `Bearer ${supabase.key}`
+                        }
+                }
+        );
+        if (!response.ok) throw new Error('Nie udało się pobrać koszyka');
+
+        const data = await response.json();
+        console.log(data)
+        return data.map(item => ({
+                id: item.products.id,
+                title: item.products.title,
+                price: item.products.price,
+                image: item.products.image,
+                quantity: item.quantity
+        }));
 }
 
-function saveCart(cart) {
-        localStorage.setItem(cartName, JSON.stringify(cart));
-}
+async function addToCart(userId, productId, quantity = 1) {
+        const response = await fetch(
+                `${supabase.url}/rest/v1/user_product?user_id=eq.${userId}&product_id=eq.${productId}`, 
+                {
+                        headers: {
+                                "apikey": supabase.key,
+                                "Authorization": `Bearer ${supabase.key}`
+                        }
+                }
+        );
+        const data = await response.json();
 
-function addToCartById(product_id) {
-        console.log("cart")
-        const cart = getCart();
-        console.log(cart)
+        if (data.length > 0) {
+                const quantityToSet = data[0].quantity + quantity;
 
-        const item = cart.find(x => x.id === product_id);
-        if (item) {
-                item.quantity += 1;
+                if (quantityToSet > 0) {
+                        await fetch(
+                                `${supabase.url}/rest/v1/user_product?user_id=eq.${userId}&product_id=eq.${productId}`, 
+                                {
+                                        method: 'PATCH',
+                                        headers: {
+                                                "apikey": supabase.key,
+                                                "Authorization": `Bearer ${supabase.key}`,
+                                                'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ quantity: data[0].quantity + quantity })
+                                }
+                        );
+                } else {
+                        removeFromCart(userId, productId);
+                }
         } else {
-                cart.push({ id: product_id, quantity: 1 });
+                await fetch(
+                        `${supabase.url}/rest/v1/user_product`, 
+                        {
+                                method: 'POST',
+                                headers: {
+                                        "apikey": supabase.key,
+                                        "Authorization": `Bearer ${supabase.key}`,
+                                        'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ user_id: userId, product_id: productId, quantity })
+                        }
+                );
         }
-
-        saveCart(cart);
 }
 
-function removeFromCartById(product_id) {
-        const cart = getCart();
-        const updatedCart = cart.filter(item => item.id !== product_id);
-        saveCart(updatedCart);
-}
-
-function updateQuantity(product_id, quantity) {
-        const cart = getCart();
-        const item = cart.find(x => x.id === product_id);
-        if (item) {
-                item.quantity = quantity;
-                saveCart(cart)
-        }
+async function removeFromCart(userId, productId) {
+        await fetch(
+                `${supabase.url}/rest/v1/user_product?user_id=eq.${userId}&product_id=eq.${productId}`, 
+                {
+                        method: 'DELETE',
+                        headers: {
+                                "apikey": supabase.key,
+                                "Authorization": `Bearer ${supabase.key}`
+                        }
+                }
+        );
 }
 
 function getSavedUser() {
