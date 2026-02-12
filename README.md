@@ -112,6 +112,7 @@ Wklej:
 	const supabase = {
 		url: 'Project URL',
 		key: 'anon public key'
+	}
 
 <h3><li>Komunikacja z bazą</li></h3>
 Frontend wykonuje zapytania bezpośrednio do Supabase REST API:
