@@ -1,6 +1,6 @@
 <h1>Sklep Internetowy (Vanilla JS + Supabase)</h1>
 Prosty sklep internetowy napisany w HTML + CSS + JavaScript (bez frameworków).
-Dnae produktów, użytkowników i koszyka przechowywane są w Supabase (PostgreSQL + REST API).
+Dane produktów, użytkowników i koszyka przechowywane są w Supabase (PostgreSQL + REST API).
 
 Projekt działa całkowicie po stronie przeglądarki.
 
